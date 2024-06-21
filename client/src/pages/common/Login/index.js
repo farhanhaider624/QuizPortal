@@ -1,24 +1,39 @@
 import { Form, message } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { loginUser } from "../../../apicalls/users";
 
 const Login = () => {
+  const onFinish = async (values) => {
+    try {
+      const response = await loginUser(values);
+      if (response.success) {
+        message.success(response.message);
+        localStorage.setItem("token", response.data);
+      } else {
+        message.error(response.message);
+      }
+    } catch (error) {
+      message.error(error.message);
+    }
+  };
+
   return (
     <div className="flex justify-center items-center h-screen w-screen bg-primary">
       <div className="card w-400 p-3 bg-white">
         <div className="flex flex-col">
           <div className="flex">
-            <h1 className="text-2xl">SHEYQUIZ - LOGIN <i class="ri-login-circle-line"></i></h1>
-            
+            <h1 className="text-2xl">
+              SHEYQUIZ - LOGIN <i class="ri-login-circle-line"></i>
+            </h1>
           </div>
           <div className="divider"></div>
-          <Form layout="vertical" className="mt-2">
+          <Form layout="vertical" className="mt-2" onFinish={onFinish}>
             <Form.Item name="email" label="Email">
-              <input type="text" />
+              <input type="text" className="w-358" />
             </Form.Item>
             <Form.Item name="password" label="Password">
-              <input type="password" />
+              <input type="password" className="w-358" />
             </Form.Item>
 
             <div className="flex flex-col gap-2">
@@ -36,7 +51,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

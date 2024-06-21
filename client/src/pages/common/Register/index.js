@@ -29,13 +29,13 @@ const Register = () => {
           <div className="divider"></div>
           <Form layout="vertical" className="mt-2" onFinish={onFinish}>
             <Form.Item name="name" label="Name">
-              <input type="text" />
+              <input type="text" className="w-358"/>
             </Form.Item>
             <Form.Item name="email" label="Email">
-              <input type="text" />
+              <input type="text" className="w-358"/>
             </Form.Item>
             <Form.Item name="password" label="Password">
-              <input type="password" />
+              <input type="password" className="w-358"/>
             </Form.Item>
 
             <div className="flex flex-col gap-2">

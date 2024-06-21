@@ -30,8 +30,15 @@
     width: 25%;
 }
 
+.w-358{
+    width: 358px;
+}
+
 .w-400{
     width: 400px;
+}
+.w-600{
+    width: 600px;
 }
 
 .flex{
