@@ -17,3 +17,12 @@ export const loginUser = async (payload) =>{
         return error.response.data;
     }
 }
+
+export const getUserInfo = async ()=>{
+    try {
+        const response = await axiosInstance.post('/api/users/get-user-info');
+        return response.data;
+    } catch (error) {
+        return error.response.data;
+    }
+}
