@@ -47,3 +47,6 @@ i{
 .underline{
     text-decoration: underline !important;
 }
+.font-style{
+    font-family: "Montserrat", sans-serif;
+}

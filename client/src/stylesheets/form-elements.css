@@ -25,4 +25,6 @@ button {
   background-color: white;
   color: var(--primary);
   border: 2px solid var(--primary);
+  font-family: "Montserrat", sans-serif;
+  border-radius: 2px;
 }

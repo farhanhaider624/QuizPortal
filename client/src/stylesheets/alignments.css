@@ -21,7 +21,7 @@
     width: 100%;
 }
 .w-75{
-    width: 75%;
+    width: 90%;
 }
 .w-50{
     width: 50%;
@@ -87,6 +87,9 @@
     gap: 50px;
 }
 
+.p-0{
+    padding: 0px;
+}
 .p-5{
     padding: 50px;
 }
