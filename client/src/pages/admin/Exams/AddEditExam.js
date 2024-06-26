@@ -101,24 +101,29 @@ const AddEditExam = () => {
                   </Form.Item>
                 </Col>
               </Row>
+              <div className="flex justify-end gap-2">
+                <button
+                  className="primary-outlined-btn"
+                  type="button"
+                  onClick={() => navigate("/admin/exams")}
+                >
+                  Cancel
+                </button>
+                <button className="primary-contained-btn" type="submit">
+                  Save
+                </button>
+              </div>
             </TabPane>
             {params.id && (
               <TabPane tab="Questions" key="2">
-                <h1>Questions</h1>
+                <div className="flex justify-end">
+                  <button className="primary-outlined-btn">
+                    Add Question
+                  </button>
+                </div>
               </TabPane>
             )}
           </Tabs>
-
-          <div className="flex justify-end gap-2">
-            <button className="primary-outlined-btn" type="button"
-            onClick={()=> navigate("/admin/exams")  }
-            >
-              Cancel
-            </button>
-            <button className="primary-contained-btn" type="submit">
-              Save
-            </button>
-          </div>
         </Form>
       )}
     </div>
