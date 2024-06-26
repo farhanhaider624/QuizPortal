@@ -4,6 +4,7 @@ import { getUserInfo } from "../apicalls/users";
 import { useDispatch, useSelector } from "react-redux";
 import { SetUser } from "../redux/usersSlice.js";
 import { useNavigate } from "react-router-dom";
+import { ShowLoading, HideLoading } from "../redux/loaderSlice";
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useSelector((state) => state.users);
@@ -80,7 +81,9 @@ const ProtectedRoute = ({ children }) => {
 
   const getUserData = async () => {
     try {
+      dispatch(ShowLoading());
       const response = await getUserInfo();
+      dispatch(HideLoading());
       if (response.success) {
         message.success(response.message);
         dispatch(SetUser(response.data));
@@ -93,6 +96,7 @@ const ProtectedRoute = ({ children }) => {
         message.error(response.message);
       }
     } catch (error) {
+      dispatch(HideLoading());
       message.error(error.message);
     }
   };
@@ -104,7 +108,10 @@ const ProtectedRoute = ({ children }) => {
 
   const getIsActiveOrNot = (paths) => {
     if(paths.includes(activeRoute)) return true;
-    else return false;
+    else{
+      if(activeRoute.includes("/admin/exams/edit") && paths.includes("/admin/exams")) return true;
+    }
+    return false;
   };
 
   return (
