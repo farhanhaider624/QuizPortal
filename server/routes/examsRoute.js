@@ -129,14 +129,14 @@ router.post("/add-question-to-exam", authMiddleware, async (req, res) => {
   }
 });
 
-//edit question in exms
+//edit question in exam
 router.post("/edit-question-in-exam", authMiddleware, async (req, res) =>{
   try {
     //updating question in Questions collection
     await Question.findByIdAndUpdate(req.body.questionId, req.body);
-    res.end({
-      messsage: "Question updated successfully",
-      succcess: true,
+    res.send({
+      message: "Question updated successfully",
+      success: true,
     });
     } catch (error) {
       res.status(500).send({

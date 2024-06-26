@@ -87,13 +87,13 @@ const Exams = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mt-2">
+      <div className="flex justify-between items-end mt-2">
         <PageTitle title="Exams" />
         <button
           className="primary-outlined-btn p-1 flex items-center font-style"
           onClick={() => navigate("/admin/exams/add")}
         >
-          <i className="ri-add-line">Add Exam</i>
+          + Add Exam
         </button>
       </div>
       <div className="divider"></div>

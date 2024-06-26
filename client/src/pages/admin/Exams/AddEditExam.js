@@ -2,10 +2,16 @@ import React, { useEffect } from "react";
 import PageTitle from "../../../components/PageTitle";
 import { Col, Form, message, Row, Tabs, Table } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
-import { addExam, getExamById, editExamById } from "../../../apicalls/exams";
+import {
+  addExam,
+  getExamById,
+  editExamById,
+  deleteQuestionById,
+} from "../../../apicalls/exams";
 import { useDispatch } from "react-redux";
 import { ShowLoading, HideLoading } from "../../../redux/loaderSlice";
 import AddEditQuestion from "./AddEditQuestion";
+import { editQuestionById } from './../../../apicalls/exams';
 
 const { TabPane } = Tabs;
 
@@ -13,8 +19,9 @@ const AddEditExam = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [examData, setExamData] = React.useState(null);
-  const [showAddEditQuestionModal, setShowAddEditQuestionModal] =React.useState(false);
-  const [seletedQuestions, setSelectedQuestions] = React.useState(null);
+  const [showAddEditQuestionModal, setShowAddEditQuestionModal] =
+    React.useState(false);
+  const [selectedQuestion, setSelectedQuestion] = React.useState(null);
   const params = useParams();
   const onFinish = async (values) => {
     try {
@@ -62,39 +69,71 @@ const AddEditExam = () => {
     }
   }, []);
 
+  const deleteQuestion = async (questionId) => {
+    try {
+      dispatch(ShowLoading());
+      const response = await deleteQuestionById({
+        questionId,
+        examId:params.id
+      });
+      dispatch(HideLoading());
+      if (response.success) {
+        message.success(response.message);
+        getExamData();
+      } else {
+        message.error(response.message);
+      }
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
+  };
+
   const questionsColumns = [
     {
       title: "Question",
       dataIndex: "name",
     },
     {
-      title:"Options",
+      title: "Options",
       dataIndex: "options",
       render: (text, record) => {
-        return Object.keys(record.options).map((key)=>{
-          return <div>{key} : {record.options[key]}</div>;
-        })
-      }
+        return Object.keys(record.options).map((key) => {
+          return (
+            <div>
+              {key} : {record.options[key]}
+            </div>
+          );
+        });
+      },
     },
     {
       title: "Correct Option",
       dataIndex: "correctOption",
-      render:(text, record) => {
-        return `${record.correctOption} : ${record.options[record.correctOption]}`;
-      }
+      render: (text, record) => {
+        return `${record.correctOption} : ${
+          record.options[record.correctOption]
+        }`;
+      },
     },
     {
       title: "Action",
       dataIndex: "action",
       render: (text, record) => (
         <div className="flex gap-2">
-          <i className="ri-pencil-line"
-            onClick={()=> {
-              setSelectedQuestions(record);
-              showAddEditQuestionModal(true);
+          <i
+            className="ri-pencil-line"
+            onClick={() => {
+              setSelectedQuestion(record);
+              setShowAddEditQuestionModal(true);
             }}
           ></i>
-          <i className="ri-delete-bin-line"></i>
+          <i
+            className="ri-delete-bin-line"
+            onClick={() => {
+              deleteQuestion(record._id);
+            }}
+          ></i>
         </div>
       ),
     },
@@ -159,7 +198,7 @@ const AddEditExam = () => {
               <TabPane tab="Questions" key="2">
                 <div className="flex justify-end">
                   <button
-                    className="primary-outlined-btn"
+                    className="primary-outlined-btn mb-15"
                     type="button"
                     onClick={() => setShowAddEditQuestionModal(true)}
                   >
@@ -167,7 +206,7 @@ const AddEditExam = () => {
                   </button>
                 </div>
                 <Table
-                  columns = {questionsColumns}
+                  columns={questionsColumns}
                   dataSource={examData?.questions || []}
                 />
               </TabPane>
@@ -181,6 +220,8 @@ const AddEditExam = () => {
           showAddEditQuestionModal={showAddEditQuestionModal}
           examId={params.id}
           refreshData={getExamData}
+          selectedQuestion={selectedQuestion}
+          setSelectedQuestion={setSelectedQuestion}
         />
       )}
     </div>
