@@ -30,5 +30,5 @@ const examSchema = new mongoose.Schema({
     timestamps: true,
 });
 
-const Exam = mongoose.model('exam', examSchema);
+const Exam = mongoose.model('exams', examSchema);
 module.exports = Exam;

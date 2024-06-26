@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import PageTitle from "../../../components/PageTitle";
-import { Col, Form, message, Row, Tabs } from "antd";
+import { Col, Form, message, Row, Tabs, Table } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { addExam, getExamById, editExamById } from "../../../apicalls/exams";
 import { useDispatch } from "react-redux";
 import { ShowLoading, HideLoading } from "../../../redux/loaderSlice";
+import AddEditQuestion from "./AddEditQuestion";
 
 const { TabPane } = Tabs;
 
@@ -12,6 +13,8 @@ const AddEditExam = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [examData, setExamData] = React.useState(null);
+  const [showAddEditQuestionModal, setShowAddEditQuestionModal] =React.useState(false);
+  const [seletedQuestions, setSelectedQuestions] = React.useState(null);
   const params = useParams();
   const onFinish = async (values) => {
     try {
@@ -58,6 +61,44 @@ const AddEditExam = () => {
       getExamData();
     }
   }, []);
+
+  const questionsColumns = [
+    {
+      title: "Question",
+      dataIndex: "name",
+    },
+    {
+      title:"Options",
+      dataIndex: "options",
+      render: (text, record) => {
+        return Object.keys(record.options).map((key)=>{
+          return <div>{key} : {record.options[key]}</div>;
+        })
+      }
+    },
+    {
+      title: "Correct Option",
+      dataIndex: "correctOption",
+      render:(text, record) => {
+        return `${record.correctOption} : ${record.options[record.correctOption]}`;
+      }
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      render: (text, record) => (
+        <div className="flex gap-2">
+          <i className="ri-pencil-line"
+            onClick={()=> {
+              setSelectedQuestions(record);
+              showAddEditQuestionModal(true);
+            }}
+          ></i>
+          <i className="ri-delete-bin-line"></i>
+        </div>
+      ),
+    },
+  ];
 
   return (
     <div>
@@ -117,14 +158,30 @@ const AddEditExam = () => {
             {params.id && (
               <TabPane tab="Questions" key="2">
                 <div className="flex justify-end">
-                  <button className="primary-outlined-btn">
+                  <button
+                    className="primary-outlined-btn"
+                    type="button"
+                    onClick={() => setShowAddEditQuestionModal(true)}
+                  >
                     Add Question
                   </button>
                 </div>
+                <Table
+                  columns = {questionsColumns}
+                  dataSource={examData?.questions || []}
+                />
               </TabPane>
             )}
           </Tabs>
         </Form>
+      )}
+      {showAddEditQuestionModal && (
+        <AddEditQuestion
+          setShowAddEditQuestionModal={setShowAddEditQuestionModal}
+          showAddEditQuestionModal={showAddEditQuestionModal}
+          examId={params.id}
+          refreshData={getExamData}
+        />
       )}
     </div>
   );

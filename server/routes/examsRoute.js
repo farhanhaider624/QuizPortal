@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Exam = require("../models/examModel");
+const Question = require("../models/questionModel");
 const authMiddleware = require("../middlewares/authMiddleware");
 
 //add exam
@@ -49,7 +50,7 @@ router.post("/get-all-exams", authMiddleware, async (req, res) => {
 //get exams by id
 router.post("/get-exam-by-id", authMiddleware, async (req, res) => {
   try {
-    const exam = await Exam.findById(req.body.examId);
+    const exam = await Exam.findById(req.body.examId).populate("questions");
     if (!exam) {
       return res
        .status(404)
@@ -112,7 +113,7 @@ router.post("/add-question-to-exam", authMiddleware, async (req, res) => {
     const question = await newQuestion.save();
 
     //adding questions to exam
-    const exam = await Exam.findById(req.body.exmas);
+    const exam = await Exam.findById(req.body.exam);
     exam.questions.push(question._id);
     await exam.save();
     res.send({

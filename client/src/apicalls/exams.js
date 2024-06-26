@@ -51,3 +51,13 @@ export const deleteExamById = async (payload) => {
         return error.response.data;
     }
 };
+
+//add question to exam
+export const addQuestionToExam = async (payload) => {
+    try {
+        const response = await axiosInstance.post("/api/exams/add-question-to-exam", payload);
+        return response.data;
+    } catch (error) {
+        return error.response.data;
+    }
+};
