@@ -109,8 +109,14 @@
 .mt-1{
     margin-top: 10px;
 }
+.mt-0{
+    margin-top: 0px !important;
+}
 .mt-2{
     margin-top: 20px;
+}
+.mt-5{
+    margin-top: 50px;
 }
 .mb-15{
     margin-bottom: 15px;

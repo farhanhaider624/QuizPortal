@@ -17,6 +17,7 @@
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
     "redux": "^5.0.1",
+    "url": "^0.11.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -43,5 +44,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"http://localhost:8000"
+  "proxy": "http://localhost:8000"
 }
