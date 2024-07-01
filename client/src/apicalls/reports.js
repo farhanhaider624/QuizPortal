@@ -21,9 +21,9 @@ export const getAllReports = async () => {
 };
 
 //get all reports by user
-export const getAllReportsByUser = async (payload) => {
+export const getAllReportsByUser = async () => {
     try {
-        const response = await axiosInstance.post('/api/reports/get-all-reports-by-user', payload);
+        const response = await axiosInstance.post('/api/reports/get-all-reports-by-user');
         return response.data;
     } catch (error) {
         return error.response.data;
