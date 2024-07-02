@@ -1,14 +1,14 @@
 import React, {useEffect} from "react";
 import PageTitle from "../../../components/PageTitle";
 import {Table, message} from 'antd';
-import { getAllReportsByUser } from "../../../apicalls/reports";
+import { getAllReports } from "../../../apicalls/reports";
 import { useDispatch } from "react-redux";
 import { ShowLoading, HideLoading } from "../../../redux/loaderSlice";
 import { useParams } from 'react-router-dom';
 import moment from "moment";
 
 
-const UserReports = () => {
+const AdminReports = () => {
   const [reportsData, setReportsData] = React.useState([]);
   const dispatch = useDispatch();
   const columns = [
@@ -18,6 +18,13 @@ const UserReports = () => {
       render:(text, record)=> <>
       {record.exam.name}
       </>
+    },
+    {
+        title: "User Name",
+        dataIndex: "userName",
+        render:(text, record)=> <>
+        {record.user.name}
+        </>
     },
     {
       title: "Date",
@@ -59,7 +66,7 @@ const UserReports = () => {
   const getData=async ()=>{
     try {
         dispatch(ShowLoading());
-        const response = await getAllReportsByUser();
+        const response = await getAllReports();
         if(response.success) {
             setReportsData(response.data);
         } else{
@@ -85,4 +92,4 @@ const UserReports = () => {
   );
 };
 
-export default UserReports;
+export default AdminReports;

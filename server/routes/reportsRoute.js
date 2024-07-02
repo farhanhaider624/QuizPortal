@@ -27,7 +27,10 @@ router.post("/add-report", authMiddleWare, async (req, res) => {
 
 router.post("/get-all-reports", authMiddleWare, async (req, res) => {
   try {
-    const reports = await Report.find();
+    const reports = await Report.find()
+      .populate("exam")
+      .populate("user")
+      .sort({ createdAt: -1 });
     res.send({
       message: "Reports fetched successfully",
       data: reports,
