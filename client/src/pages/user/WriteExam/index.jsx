@@ -98,7 +98,7 @@ const WriteExam = () => {
   };
 
   useEffect(() => {
-    if (timeUp && view==='questions') {
+    if (timeUp && view === "questions") {
       clearInterval(intervalId);
       calculateResult();
     }
@@ -218,6 +218,26 @@ const WriteExam = () => {
                   Wrong Answers: {result.wrongAnswers.length}
                 </h1>
                 <h1 className="text-md">VERDICT: {result.verdict}</h1>
+
+                <div className="flex gap-2 mt-2">
+                  <button
+                    className="primary-outlined-btn"
+                    onClick={() => {
+                      setView("instructions");
+                      setSelectedQuestionIndex(0);
+                      setSelectedOptions({});
+                      setSecondsLeft(examData.duration);
+                    }}
+                  >
+                    Retake Exam
+                  </button>
+                  <button
+                    className="primary-contained-btn"
+                    onClick={() => setView("review")}
+                  >
+                    Review Answers
+                  </button>
+                </div>
               </div>
             </div>
             <div className="lottie-animation">
@@ -240,6 +260,47 @@ const WriteExam = () => {
                   autoplay
                 ></dotlottie-player>
               )}
+            </div>
+          </div>
+        )}
+
+        {view === "review" && (
+          <div className="flex flex-col gap-2">
+            {questions.map((question, index) => {
+              const isCorrect =
+                question.correctOption === selectedOptions[index];
+              return (
+                <div
+                  className={`flex flex-col gap-1 p-2 card ${
+                    isCorrect ? "bg-success" : "bg-error"
+                  }`}
+                >
+                  <h1 className="text-xl">
+                    {index + 1} : {question.name}
+                  </h1>
+                  <h1 className="text-md">
+                    Submitted Answer : {selectedOptions[index]} -{" "}
+                    {question.options[selectedOptions[index]]}
+                  </h1>
+                  <h1 className="text-md">
+                    Correct Answer : {question.correctOption} -{" "}
+                    {question.options[question.correctOption]}
+                  </h1>
+                </div>
+              );
+            })}
+            <div className="flex justify-center gap-2">
+              <button className="primary-outlined-btn"
+              onClick={()=>{navigate("/")}}
+              >Close</button>
+              <button className="primary-contained-btn"
+              onClick={()=>{
+                setView("instructions");
+                setSelectedQuestionIndex(0);
+                setSelectedOptions({});
+                setSecondsLeft(examData.duration);
+              }}
+              >Retake Exam</button>
             </div>
           </div>
         )}
