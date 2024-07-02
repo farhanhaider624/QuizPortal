@@ -26,12 +26,12 @@ const ProtectedRoute = ({ children }) => {
       icon: <i className="ri-file-chart-line"></i>,
       onClick: () => navigate("/user/reports"),
     },
-    {
-      title: "Profile",
-      paths: ["/profile"],
-      icon: <i className="ri-user-line"></i>,
-      onClick: () => navigate("/profile"),
-    },
+    // {
+    //   title: "Profile",
+    //   paths: ["/profile"],
+    //   icon: <i className="ri-user-line"></i>,
+    //   onClick: () => navigate("/profile"),
+    // },
     {
       title: "Logout",
       paths: ["/logout"],
@@ -62,12 +62,12 @@ const ProtectedRoute = ({ children }) => {
       icon: <i className="ri-bar-chart-line"></i>,
       onClick: () => navigate("/admin/reports"),
     },
-    {
-      title: "Profile",
-      paths: ["/admin/profile"],
-      icon: <i className="ri-user-line"></i>,
-      onClick: () => navigate("/profile"),
-    },
+    // {
+    //   title: "Profile",
+    //   paths: ["/admin/profile"],
+    //   icon: <i className="ri-user-line"></i>,
+    //   onClick: () => navigate("/profile"),
+    // },
     {
       title: "Logout",
       paths: ["/logout"],
@@ -118,18 +118,18 @@ const ProtectedRoute = ({ children }) => {
         activeRoute.includes("/admin/exams/edit") &&
         paths.includes("/admin/exams")
       )
-      return true;
+        return true;
       if (
         activeRoute.includes("/user/write-exam") &&
         paths.includes("/user/write-exam")
       )
-      return true;
+        return true;
     }
     return false;
   };
 
   return (
-    <div className="layout h-100 w-100">
+    <div className="layout">
       <div className="flex h-screen gap-2">
         <div className="sidebar h-100">
           <div className="menu">
@@ -164,10 +164,13 @@ const ProtectedRoute = ({ children }) => {
               ></i>
             )}
 
-            <h1 className="text-2xl">SHEY QUIZ</h1>
-            <div className="flex gap-1 items-center">
-              <i className="ri-user-line"></i>
-              <div className="text-xl underline">{user?.name}</div>
+            <h1 className="text-2xl">QUIZZY QUEST</h1>
+            <div>
+              <div className="flex gap-1 items-center">
+                {/* <i className="ri-user-line"></i> */}
+                <h1 className="text-xl">{user?.name}</h1>
+              </div>
+              <span>Role: {user?.isAdmin ? "Admin" : "User"}</span>
             </div>
           </div>
           <div className="content">{children}</div>

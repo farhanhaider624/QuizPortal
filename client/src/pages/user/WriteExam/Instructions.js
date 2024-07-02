@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Instructions = ({ examData, view, setView, startTimer }) => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col items-center gap-5">
       <ul className="flex flex-col gap-1">
@@ -26,15 +28,23 @@ const Instructions = ({ examData, view, setView, startTimer }) => {
           <span className="font-bold">{examData.passingMarks}</span>.
         </li>
       </ul>
-      <button
-        className="primary-outlined-btn"
-        onClick={() =>{
-          startTimer();
-          setView("questions")
-        }}
-      >
-        Start Exam
-      </button>
+      <div className="flex gap-2">
+        <button
+          className="primary-outlined-btn"
+          onClick={() => navigate("/")}
+        >
+          Cancel
+        </button>
+        <button
+          className="primary-contained-btn"
+          onClick={() => {
+            startTimer();
+            setView("questions");
+          }}
+        >
+          Start Exam
+        </button>
+      </div>
     </div>
   );
 };

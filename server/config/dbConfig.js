@@ -1,8 +1,8 @@
 const { log } = require("console");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const connectionString = 'mongodb+srv://khanfhk:Farhan123@cluster0.qrmnnqr.mongodb.net/quizPortal';
-// const mongoURI = process.env.MONGO_URL;
+
+const connectionString = process.env.MONGO_URL;
 
 mongoose.connect(connectionString, {
   useNewUrlParser: true,

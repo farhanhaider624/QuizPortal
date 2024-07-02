@@ -203,9 +203,10 @@ const WriteExam = () => {
         )}
 
         {view === "result" && (
-          <div className="flex items-center mt-5 justify-center">
-            <div className="flex flex-col gap-2 result">
+          <div className="flex items-center mt-2 justify-center result gap-3">
+            <div className="flex flex-col gap-1">
               <h1 className="text-2xl">RESULT</h1>
+              <div className="divider"></div>
               <div className="marks">
                 <h1 className="text-md">Total Marks: {examData.totalMarks}</h1>
                 <h1 className="text-md">
@@ -290,17 +291,25 @@ const WriteExam = () => {
               );
             })}
             <div className="flex justify-center gap-2">
-              <button className="primary-outlined-btn"
-              onClick={()=>{navigate("/")}}
-              >Close</button>
-              <button className="primary-contained-btn"
-              onClick={()=>{
-                setView("instructions");
-                setSelectedQuestionIndex(0);
-                setSelectedOptions({});
-                setSecondsLeft(examData.duration);
-              }}
-              >Retake Exam</button>
+              <button
+                className="primary-outlined-btn"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                Close
+              </button>
+              <button
+                className="primary-contained-btn"
+                onClick={() => {
+                  setView("instructions");
+                  setSelectedQuestionIndex(0);
+                  setSelectedOptions({});
+                  setSecondsLeft(examData.duration);
+                }}
+              >
+                Retake Exam
+              </button>
             </div>
           </div>
         )}

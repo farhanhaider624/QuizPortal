@@ -36,7 +36,7 @@ const Home = () => {
       <div>
         <PageTitle
           className="font-wt-bold"
-          title={`Hi ${user?.name}, Welcome to the Shey Quiz`}
+          title={`Hi ${user?.name}, Welcome to the Quizzy Quest`}
         />
         <div className="divider"></div>
         <Row gutter={[16, 16]}>

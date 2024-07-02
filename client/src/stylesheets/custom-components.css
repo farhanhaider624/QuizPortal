@@ -44,9 +44,10 @@
   }
   
   .result {
-    background-color: #87CCFF;
+    /* background-color: #87CCFF; */
     box-shadow: rgba(75, 75, 75, 0.638) 0px 0px 2px;
     padding: 30px;
+    color: white impr !important;
     border-radius: 5px;
   }
   

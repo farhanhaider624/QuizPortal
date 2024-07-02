@@ -31,7 +31,7 @@ const Login = () => {
         <div className="flex flex-col">
           <div className="flex">
             <h1 className="text-2xl">
-              SHEYQUIZ - LOGIN <i class="ri-login-circle-line"></i>
+              QUIZZYQUEST - LOGIN <i class="ri-login-circle-line"></i>
             </h1>
           </div>
           <div className="divider"></div>
