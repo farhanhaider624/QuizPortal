@@ -5,7 +5,6 @@ import { getExamById } from "../../../apicalls/exams";
 import { useDispatch, useSelector } from "react-redux";
 import { ShowLoading, HideLoading } from "../../../redux/loaderSlice";
 import Instructions from "./Instructions";
-import { set } from "mongoose";
 import { addReport } from "../../../apicalls/reports";
 
 const WriteExam = () => {
