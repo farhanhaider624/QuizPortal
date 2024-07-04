@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Table, message } from "antd";
 import { useDispatch } from "react-redux";
 import { ShowLoading, HideLoading } from "../../../redux/loaderSlice";
-import {getAllExams, deleteExamById} from "../../../apicalls/exams";
+import { getAllExams, deleteExamById } from "../../../apicalls/exams";
 
 const Exams = () => {
   const navigate = useNavigate();
@@ -16,11 +16,11 @@ const Exams = () => {
       dispatch(ShowLoading());
       const response = await deleteExamById({ examId });
       dispatch(HideLoading());
-      if (response.success) {
-        message.success(response.message);
+      if (response?.success) {
+        message.success(response?.message);
         getExamsData();
       } else {
-        message.error(response.message);
+        message.error(response?.message);
       }
     } catch (error) {
       dispatch(HideLoading());
@@ -28,17 +28,16 @@ const Exams = () => {
     }
   };
 
-
   const getExamsData = async () => {
     try {
       dispatch(ShowLoading());
       const response = await getAllExams();
-      console.log(response.data);
+      console.log(response?.data);
       dispatch(HideLoading());
-      if (response.success) {
-        SetExams(response.data);
+      if (response?.success) {
+        SetExams(response?.data);
       } else {
-        message.error(response.message);
+        message.error(response?.message);
       }
     } catch (error) {
       dispatch(HideLoading());
@@ -70,14 +69,18 @@ const Exams = () => {
     {
       title: "Action",
       dataIndex: "action",
-      render: (text, record) => <div className="flex gap-2">
-        <i className="ri-pencil-line"
-          onClick={()=> navigate(`/admin/exams/edit/${record._id}`)}
-        ></i>
-        <i className="ri-delete-bin-line"
-        onClick={() => deleteExam(record._id)}
-        ></i>
-      </div>
+      render: (text, record) => (
+        <div className="flex gap-2">
+          <i
+            className="ri-pencil-line"
+            onClick={() => navigate(`/admin/exams/edit/${record._id}`)}
+          ></i>
+          <i
+            className="ri-delete-bin-line"
+            onClick={() => deleteExam(record._id)}
+          ></i>
+        </div>
+      ),
     },
   ];
 

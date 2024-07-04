@@ -57,10 +57,10 @@ const AdminReports = () => {
     try {
       dispatch(ShowLoading());
       const response = await getAllReports(tempFilters);
-      if (response.success) {
-        setReportsData(response.data);
+      if (response?.success) {
+        setReportsData(response?.data);
       } else {
-        message.error(response.message);
+        message.error(response?.message);
       }
       dispatch(HideLoading());
     } catch (error) {
@@ -104,7 +104,10 @@ const AdminReports = () => {
         >
           Clear
         </button>
-        <button className="primary-contained-btn" onClick={() => getData(filters)}>
+        <button
+          className="primary-contained-btn"
+          onClick={() => getData(filters)}
+        >
           Search
         </button>
       </div>

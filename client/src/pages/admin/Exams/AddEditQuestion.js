@@ -37,12 +37,12 @@ function AddEditQuestion({
       } else {
         response = await addQuestionToExam(requiredPayload);
       }
-      if (response.success) {
-        message.success(response.message);
+      if (response?.success) {
+        message.success(response?.message);
         refreshData();
         setShowAddEditQuestionModal(false);
       } else {
-        message.error(response.message);
+        message.error(response?.message);
       }
       setSelectedQuestion(null);
       dispatch(HideLoading());

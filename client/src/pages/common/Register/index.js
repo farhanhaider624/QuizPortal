@@ -12,12 +12,12 @@ const Register = () => {
       dispatch(ShowLoading());
       const response = await registerUser(values);
       dispatch(HideLoading());
-      
-      if (response.success) {
-        message.success(response.message);
+
+      if (response?.success) {
+        message.success(response?.message);
         navigate("/login");
       } else {
-        message.error(response.message);
+        message.error(response?.message);
       }
     } catch (error) {
       dispatch(HideLoading());
@@ -30,18 +30,18 @@ const Register = () => {
       <div className="card w-400 p-3 bg-white">
         <div className="flex flex-col">
           <h1 className="text-2xl">
-          QUIZZYQUEST - REGISTER<i className="ri-user-add-line"></i>
+            QUIZZYQUEST - REGISTER<i className="ri-user-add-line"></i>
           </h1>
           <div className="divider"></div>
           <Form layout="vertical" className="mt-2" onFinish={onFinish}>
             <Form.Item name="name" label="Name">
-              <input type="text"/>
+              <input type="text" />
             </Form.Item>
             <Form.Item name="email" label="Email">
-              <input type="text"/>
+              <input type="text" />
             </Form.Item>
             <Form.Item name="password" label="Password">
-              <input type="password"/>
+              <input type="password" />
             </Form.Item>
 
             <div className="flex flex-col gap-2">
@@ -57,7 +57,7 @@ const Register = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

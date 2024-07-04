@@ -84,16 +84,16 @@ const ProtectedRoute = ({ children }) => {
       dispatch(ShowLoading());
       const response = await getUserInfo();
       dispatch(HideLoading());
-      if (response.success) {
-        message.success(response.message);
-        dispatch(SetUser(response.data));
-        if (response.data.isAdmin) {
+      if (response?.success) {
+        message.success(response?.message);
+        dispatch(SetUser(response?.data));
+        if (response?.data.isAdmin) {
           setMenu(adminMenu);
         } else {
           setMenu(userMenu);
         }
       } else {
-        message.error(response.message);
+        message.error(response?.message);
       }
     } catch (error) {
       navigate("/login");

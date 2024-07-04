@@ -15,10 +15,10 @@ const Home = () => {
     try {
       dispatch(ShowLoading());
       const response = await getAllExams();
-      if (response.success) {
-        setExams(response.data);
+      if (response?.success) {
+        setExams(response?.data);
       } else {
-        message.error(response.message);
+        message.error(response?.message);
       }
       dispatch(HideLoading());
     } catch (error) {

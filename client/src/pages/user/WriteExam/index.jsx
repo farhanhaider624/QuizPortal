@@ -29,12 +29,12 @@ const WriteExam = () => {
         examId: params.id,
       });
       dispatch(HideLoading());
-      if (response.success) {
-        setQuestions(response.data.questions);
-        setExamData(response.data);
-        setSecondsLeft(response.data.duration);
+      if (response?.success) {
+        setQuestions(response?.data.questions);
+        setExamData(response?.data);
+        setSecondsLeft(response?.data.duration);
       } else {
-        message.error(response.message);
+        message.error(response?.message);
       }
     } catch (error) {
       dispatch(HideLoading());
@@ -71,10 +71,10 @@ const WriteExam = () => {
         user: user._id,
       });
       dispatch(HideLoading());
-      if (response.success) {
+      if (response?.success) {
         setView("result");
       } else {
-        message.error(response.message);
+        message.error(response?.message);
       }
       setView("result");
     } catch (error) {

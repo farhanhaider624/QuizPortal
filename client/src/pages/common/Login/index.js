@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { loginUser } from "../../../apicalls/users";
 import { useDispatch } from "react-redux";
-import {ShowLoading, HideLoading } from "../../../redux/loaderSlice";
+import { ShowLoading, HideLoading } from "../../../redux/loaderSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -12,12 +12,12 @@ const Login = () => {
       dispatch(ShowLoading());
       const response = await loginUser(values);
       dispatch(HideLoading());
-      if (response.success) {
-        message.success(response.message);
-        localStorage.setItem("token", response.data);
-        window.location.href="/";
+      if (response?.success) {
+        message.success(response?.message);
+        localStorage.setItem("token", response?.data);
+        window.location.href = "/";
       } else {
-        message.error(response.message);
+        message.error(response?.message);
       }
     } catch (error) {
       dispatch(HideLoading());
@@ -40,7 +40,7 @@ const Login = () => {
               <input type="text" />
             </Form.Item>
             <Form.Item name="password" label="Password">
-              <input type="password"/>
+              <input type="password" />
             </Form.Item>
 
             <div className="flex flex-col gap-2">

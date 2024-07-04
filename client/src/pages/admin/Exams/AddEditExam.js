@@ -11,7 +11,7 @@ import {
 import { useDispatch } from "react-redux";
 import { ShowLoading, HideLoading } from "../../../redux/loaderSlice";
 import AddEditQuestion from "./AddEditQuestion";
-import { editQuestionById } from './../../../apicalls/exams';
+import { editQuestionById } from "./../../../apicalls/exams";
 
 const { TabPane } = Tabs;
 
@@ -32,11 +32,11 @@ const AddEditExam = () => {
       } else {
         response = await addExam(values);
       }
-      if (response.success) {
-        message.success(response.message);
+      if (response?.success) {
+        message.success(response?.message);
         navigate("/admin/exams");
       } else {
-        message.error(response.message);
+        message.error(response?.message);
       }
       dispatch(HideLoading());
     } catch (error) {
@@ -52,10 +52,10 @@ const AddEditExam = () => {
         examId: params.id,
       });
       dispatch(HideLoading());
-      if (response.success) {
-        setExamData(response.data);
+      if (response?.success) {
+        setExamData(response?.data);
       } else {
-        message.error(response.message);
+        message.error(response?.message);
       }
     } catch (error) {
       dispatch(HideLoading());
@@ -74,14 +74,14 @@ const AddEditExam = () => {
       dispatch(ShowLoading());
       const response = await deleteQuestionById({
         questionId,
-        examId:params.id
+        examId: params.id,
       });
       dispatch(HideLoading());
-      if (response.success) {
-        message.success(response.message);
+      if (response?.success) {
+        message.success(response?.message);
         getExamData();
       } else {
-        message.error(response.message);
+        message.error(response?.message);
       }
     } catch (error) {
       dispatch(HideLoading());

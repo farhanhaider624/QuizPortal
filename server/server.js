@@ -3,6 +3,12 @@ const app = express();
 require("dotenv").config();
 app.use(express.json());
 const dbConfig = require("./config/dbConfig");
+const cors = require("cors");
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 const usersRoute = require("./routes/usersRoute");
 const examsRoute = require("./routes/examsRoute");

@@ -1,13 +1,18 @@
+import { baseUrl } from "../constants";
+
 const { default: axiosInstance } = require(".");
 
 //add exam
 
 export const addExam = async (payload) => {
   try {
-    const response = await axiosInstance.post("/api/exams/add", payload);
-    return response.data;
+    const response = await axiosInstance.post(
+      `${baseUrl}/api/exams/add`,
+      payload
+    );
+    return response?.data;
   } catch (error) {
-    return error.response.data;
+    return error.response?.data;
   }
 };
 
@@ -15,10 +20,12 @@ export const addExam = async (payload) => {
 
 export const getAllExams = async () => {
   try {
-    const response = await axiosInstance.post("/api/exams/get-all-exams");
-    return response.data;
+    const response = await axiosInstance.post(
+      `${baseUrl}/api/exams/get-all-exams`
+    );
+    return response?.data;
   } catch (error) {
-    return error.response.data;
+    return error.response?.data;
   }
 };
 
@@ -26,12 +33,12 @@ export const getAllExams = async () => {
 export const getExamById = async (payload) => {
   try {
     const response = await axiosInstance.post(
-      `/api/exams/get-exam-by-id`,
+      `${baseUrl}/api/exams/get-exam-by-id`,
       payload
     );
-    return response.data;
+    return response?.data;
   } catch (error) {
-    return error.response.data;
+    return error.response?.data;
   }
 };
 
@@ -39,12 +46,12 @@ export const getExamById = async (payload) => {
 export const editExamById = async (payload) => {
   try {
     const response = await axiosInstance.post(
-      `/api/exams/edit-exam-by-id`,
+      `${baseUrl}/api/exams/edit-exam-by-id`,
       payload
     );
-    return response.data;
+    return response?.data;
   } catch (error) {
-    return error.response.data;
+    return error.response?.data;
   }
 };
 
@@ -52,12 +59,12 @@ export const editExamById = async (payload) => {
 export const deleteExamById = async (payload) => {
   try {
     const response = await axiosInstance.post(
-      `/api/exams/delete-exam-by-id`,
+      `${baseUrl}/api/exams/delete-exam-by-id`,
       payload
     );
-    return response.data;
+    return response?.data;
   } catch (error) {
-    return error.response.data;
+    return error.response?.data;
   }
 };
 
@@ -65,12 +72,12 @@ export const deleteExamById = async (payload) => {
 export const addQuestionToExam = async (payload) => {
   try {
     const response = await axiosInstance.post(
-      "/api/exams/add-question-to-exam",
+      `${baseUrl}/api/exams/add-question-to-exam`,
       payload
     );
-    return response.data;
+    return response?.data;
   } catch (error) {
-    return error.response.data;
+    return error.response?.data;
   }
 };
 
@@ -78,25 +85,24 @@ export const addQuestionToExam = async (payload) => {
 export const editQuestionById = async (payload) => {
   try {
     const response = await axiosInstance.post(
-      "/api/exams/edit-question-in-exam",
+      `${baseUrl}/api/exams/edit-question-in-exam`,
       payload
     );
-    return response.data;
+    return response?.data;
   } catch (error) {
-    return error.response.data;
+    return error.response?.data;
   }
 };
 
 //delete question by id
 export const deleteQuestionById = async (payload) => {
-    try {
-      const response = await axiosInstance.post(
-        "/api/exams/delete-question-from-exam",
-        payload
-      );
-      return response.data;
-    } catch (error) {
-      return error.response.data;
-    }
-  
-}
+  try {
+    const response = await axiosInstance.post(
+      `${baseUrl}/api/exams/delete-question-from-exam`,
+      payload
+    );
+    return response?.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
