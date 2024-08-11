@@ -14,3 +14,33 @@ Features:
 * Live Results: Immediate result generation upon exam completion, stored securely in MongoDB.
 * Analytics & Reports: Comprehensive reporting tools for both Admins and Users to review performance.
 * This project represents a complete, real-world application demonstrating the power and flexibility of the MERN stack for building dynamic, data-driven web applications.
+
+## How To Use
+
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/farhanhaider624/QuizPortal
+
+# Go into the repository
+$ cd QuizPortal
+
+# Go into the client directory
+$ cd client
+
+# Install dependencies
+$ npm install
+
+# Go into the server directory
+$ cd server
+
+# Install dependencies
+$ npm install
+
+# Run the server
+$ nodemon server.js
+
+# Run the client
+$ npm start
+```
