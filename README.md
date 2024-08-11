@@ -1,4 +1,6 @@
 # MERN Stack Quiz Portal Application
+
+![LOGO](https://github.com/user-attachments/assets/e67e1245-6e16-4626-8fdc-5416816db28f)
 This project is a full-featured Quiz Portal built using the MERN Stack (MongoDB, Express.js, React.js, Node.js). Inspired by the real-world application, this project offers a robust and scalable solution for online quiz management.
 
 Features:
