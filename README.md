@@ -44,3 +44,11 @@ $ nodemon server.js
 # Run the client
 $ npm start
 ```
+
+![register](https://github.com/user-attachments/assets/008f6467-5193-4dc7-ab4d-23e118038e8f)
+![login](https://github.com/user-attachments/assets/184d1625-48fc-49ed-8c96-226aac628156)
+![admin-dashboard](https://github.com/user-attachments/assets/02b74c01-fb57-4906-a87a-150755856b77)
+![admin-exams](https://github.com/user-attachments/assets/db00dedc-70a6-45da-883e-8be41d850bb0)
+![admin-reports](https://github.com/user-attachments/assets/ed99a34e-46c9-419b-aac6-3f10d25d1c1f)
+![admin-addExam](https://github.com/user-attachments/assets/2147c745-12ef-4c05-8b79-b35b11247842)
+![admin-exam-questionList-addQuestion](https://github.com/user-attachments/assets/ba242a90-c1e5-4d35-b78f-abadeb00786c)
