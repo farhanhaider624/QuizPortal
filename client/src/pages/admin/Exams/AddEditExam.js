@@ -24,6 +24,7 @@ const AddEditExam = () => {
   const [selectedQuestion, setSelectedQuestion] = React.useState(null);
   const params = useParams();
   const onFinish = async (values) => {
+    // console.log(typeof(values));
     try {
       dispatch(ShowLoading());
       let response;
