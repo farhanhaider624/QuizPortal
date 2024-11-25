@@ -3,6 +3,7 @@ const authMiddleWare = require("../middlewares/authMiddleware");
 const Exam = require("../models/examModel");
 const User = require("../models/userModel");
 const Report = require("../models/reportModel");
+const isAdminMiddleware = require("../middlewares/isAdminMiddleware");
 
 //add report
 
@@ -25,7 +26,7 @@ router.post("/add-report", authMiddleWare, async (req, res) => {
 
 //get all reports
 
-router.post("/get-all-reports", authMiddleWare, async (req, res) => {
+router.post("/get-all-reports", authMiddleWare, isAdminMiddleware, async (req, res) => {
   try {
     const { examName, userName } = req.body;
     const exams = await Exam.find({
